@@ -28,6 +28,9 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        
+        
         // Handle the text field’s user input through delegate callbacks.
         nameTextField.delegate = self
         
@@ -36,7 +39,7 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
             navigationItem.title = meal.name
             nameTextField.text   = meal.name
             photoImageView.image = meal.photo
-            ratingControl.rating = meal.rating
+            ratingControl.rating = meal.rating!
         }
         
         //enable the save button only if the text field has a valid meal name
@@ -125,7 +128,7 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         let rating = ratingControl.rating
         
         // Set the meal to be passed to MealTableViewController after the unwind segue.
-        meal = Meal(name: name, photo: photo, rating: rating)
+//        meal = Meal(name: name, photo: photo, rating: rating)
         
     }
     

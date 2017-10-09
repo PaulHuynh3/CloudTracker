@@ -19,17 +19,14 @@ class MealTableViewController: UITableViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        let manager = DataManager()
+        
+        
+        manager.sendRequestForAllMeals()
         
         // Use the edit button item provided by the table view controller.
         navigationItem.leftBarButtonItem = editButtonItem
         
-        // Load any saved meals, otherwise load sample data.
-        if let savedMeals = loadMeals() {
-            meals += savedMeals
-        } else {
-            // Load the sample data.
-            loadSampleMeals()
-        }
 
     }
     
@@ -63,7 +60,7 @@ class MealTableViewController: UITableViewController
         
         cell.nameLabel.text = meal.name
         cell.photoImageView.image = meal.photo
-        cell.ratingControl.rating = meal.rating
+        cell.ratingControl.rating = meal.rating!
         
         return cell
     }
@@ -84,8 +81,6 @@ class MealTableViewController: UITableViewController
             // Delete the row from the data source
             meals.remove(at: indexPath.row)
             
-            //data persist
-            saveMeals()
             
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
@@ -160,8 +155,6 @@ class MealTableViewController: UITableViewController
                 meals.append(meal)
                 tableView.insertRows(at: [newIndexPath], with: .automatic)
             }
-           //save the meals for data persist
-            saveMeals()
             
         }
     }
@@ -169,50 +162,50 @@ class MealTableViewController: UITableViewController
     
     //MARK: Private Methods
     
-    private func loadSampleMeals()
-    {
-        let photo1 = UIImage(named: "meal1")
-        let photo2 = UIImage(named: "meal2")
-        let photo3 = UIImage(named: "meal3")
-        
-        guard let meal1 = Meal(name: "Caprese Salad", photo: photo1, rating: 4)
-            else
-        {
-            fatalError("Unable to instantiate meal1")
-        }
-        
-        guard let meal2 = Meal(name: "Chicken and Potatoes", photo: photo2, rating: 5)
-            else
-        {
-            fatalError("Unable to instantiate meal2")
-        }
-        
-        guard let meal3 = Meal(name: "Pasta with Meatballs", photo: photo3, rating: 3)
-            else
-        {
-            fatalError("Unable to instantiate meal2")
-        }
-        
-        //add the objects to the array of meals
-        meals += [meal1, meal2, meal3]
-    }
-    
-    
-    //DATA persist function
-    private func saveMeals () {
-        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(meals, toFile: Meal.ArchiveURL.path)
-        if isSuccessfulSave {
-            os_log("Meals successfully saved.", log: OSLog.default, type: .debug)
-        } else {
-            os_log("Failed to save meals...", log: OSLog.default, type: .error)
-        }
-    
-    }
-    
-    //Load the meal list
-    
-    private func loadMeals() -> [Meal]?  {
-        return NSKeyedUnarchiver.unarchiveObject(withFile: Meal.ArchiveURL.path) as? [Meal]
-    }
-    
+//    private func loadSampleMeals()
+//    {
+//        let photo1 = UIImage(named: "meal1")
+//        let photo2 = UIImage(named: "meal2")
+//        let photo3 = UIImage(named: "meal3")
+//        
+//        guard let meal1 = Meal(name: "Caprese Salad", photo: photo1, rating: 4)
+//            else
+//        {
+//            fatalError("Unable to instantiate meal1")
+//        }
+//        
+//        guard let meal2 = Meal(name: "Chicken and Potatoes", photo: photo2, rating: 5)
+//            else
+//        {
+//            fatalError("Unable to instantiate meal2")
+//        }
+//        
+//        guard let meal3 = Meal(name: "Pasta with Meatballs", photo: photo3, rating: 3)
+//            else
+//        {
+//            fatalError("Unable to instantiate meal2")
+//        }
+//        
+//        //add the objects to the array of meals
+//        meals += [meal1, meal2, meal3]
+//    }
+//    
+//    
+//    //DATA persist function
+//    private func saveMeals () {
+//        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(meals, toFile: Meal.ArchiveURL.path)
+//        if isSuccessfulSave {
+//            os_log("Meals successfully saved.", log: OSLog.default, type: .debug)
+//        } else {
+//            os_log("Failed to save meals...", log: OSLog.default, type: .error)
+//        }
+//    
+//    }
+//    
+//    //Load the meal list
+//    
+//    private func loadMeals() -> [Meal]?  {
+//        return NSKeyedUnarchiver.unarchiveObject(withFile: Meal.ArchiveURL.path) as? [Meal]
+//    }
+//    
 }
