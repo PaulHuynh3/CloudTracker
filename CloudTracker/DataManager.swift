@@ -63,67 +63,119 @@ class DataManager: NSObject {
             }
             
             print(#line, arrayOfFood)
+            // completion(arrayOfMeals)
+            
             
         })
         task.resume()
         session.finishTasksAndInvalidate()
     }
     
+
+    
+    
+//post photo to imgur
+    func postPhotoToImgur() {
+        let sessionConfig = URLSessionConfiguration.default
+        /* Create session, and optionally set a URLSessionDelegate. */
+        let session = URLSession(configuration: sessionConfig)
+        
+        /* Create the Request:
+         Post image to Imgur (POST https://api.imgur.com/3/image)
+         */
+        
+        let image = UIImage(named: "animal03")
+        let imageData = UIImageJPEGRepresentation(image!, 1.0)
+        
+        guard let URL = URL(string: "https://api.imgur.com/3/image") else {return}
+        var request = URLRequest(url: URL)
+        
+        
+        request.httpMethod = "POST"
+        // Headers
+//        request.addValue("IMGURSESSION=65562fa6c2283ab470b6c7bdbf5ba115; _nc=1", forHTTPHeaderField: "Cookie")
+        request.addValue("Client-ID 887c27b7d390539", forHTTPHeaderField: "Authorization")
+        request.addValue("image/jpeg", forHTTPHeaderField: "Content-Type")
+        
+        /* Start a new Task */
+        let task = session.uploadTask(with: request, from: imageData!) { (data: Data?, response: URLResponse?, error: Error?) in
+            
+            
+            if let error = error {
+                print(#line, error.localizedDescription)
+                return
+            }
+            
+            guard let data = data else {
+                print(#line, "no data")
+                return
+            }
+            
+            guard let dict = try! JSONSerialization.jsonObject(with: data) as? Dictionary<String,Any> else {
+                return
+            }
+            
+                if let url = dict["data"] as? String {
+                    print(#line, url)
+
+            
+            }
+            
+        }
+        
+        task.resume()
+        session.finishTasksAndInvalidate()
+    }
+    
+
+    //post photo to imgur
+//    func postPhotoToImgur() {
+//        let sessionConfig = URLSessionConfiguration.default
+//        /* Create session, and optionally set a URLSessionDelegate. */
+//        let session = URLSession(configuration: sessionConfig)
+//        
+//        
+//        let image = UIImage(named: "animal03")
+//        let imageData = UIImageJPEGRepresentation(image!, 1.0)
+//        
+//        guard let URL = URL(string: "https://api.imgur.com/3/image") else {return}
+//        var request = URLRequest(url: URL)
+//        
+//        request.httpMethod = "POST"
+//        
+//        // Headers
+//        request.addValue("Client-ID 887c27b7d390539", forHTTPHeaderField: "Authorization")
+//        request.addValue("image/jpeg", forHTTPHeaderField: "Content-Type")
+//        
+//        /* Start a new Task */
+//        let task = session.uploadTask(with: request, from: imageData!) { (data: Data?, response: URLResponse?, error: Error?) in
+//            
+//            
+//            if let error = error {
+//                print(#line, error.localizedDescription)
+//                return
+//            }
+//            
+//            guard let data = data else {
+//                print(#line, "no data")
+//                return
+//            }
+//            
+//            guard let dict = try! JSONSerialization.jsonObject(with: data) as? Dictionary<String,Any> else {
+//                return
+//            }
+//            
+//            print(#line, dict)
+//        }
+//        
+//        task.resume()
+//        session.finishTasksAndInvalidate()
+//    }
+//    
     
     
     
     
-    
-    
-    
-    
-    
-    //   +(void)queryProductComplete:(void (^)(NSArray<Product*> *))complete{
-    //
-    //    NSURL *queryURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://lcboapi.com/products?where=has_value_added_promotion&order=price_in_cents"]];
-    //
-    //    //this is when you have a header
-    //    NSMutableURLRequest *reqWithHeader = [NSMutableURLRequest requestWithURL:queryURL];
-    //    [reqWithHeader addValue:[NSString stringWithFormat:@"Token token=%@",LCBO_KEY] forHTTPHeaderField:@"Authorization"];
-    //
-    //    NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithRequest:reqWithHeader completionHandler:^(NSData * data, NSURLResponse * response, NSError * error) {
-    //    //happening inside this block of code.
-    //    // this is where we get the results
-    //    if (error != nil) {
-    //    NSLog(@"error in url session: %@", error.localizedDescription);
-    //    abort(); // TODO: display an alert or something
-    //    }
-    //    // TODO: check the response code we got; if it's >= 300 something is wrong
-    //    // remember to check status code, we need to cast response to a NSHTTPURLResponse
-    //    if (((NSHTTPURLResponse*)response).statusCode >= 300) {
-    //    NSLog(@"Unexpected http response: %@", response);
-    //    abort(); // TODO: display an alert or something
-    //    }
-    //
-    //    NSError *err = nil;
-    //    NSDictionary* result = [NSJSONSerialization JSONObjectWithData:data options:0 error:&err];
-    //    if (err != nil) {
-    //    NSLog(@"Something went wrong parsing JSON: %@", err.localizedDescription);
-    //    abort();
-    //    }
-    //    //short way of doing [[NSMutableArray alloc]init];
-    //    NSMutableArray<Product*> *promotionalAlcohol = [@[] mutableCopy];
-    //
-    //    //creates an empty array where i am accessing the dictionary-array and then saving its array to my mutable array.
-    //    for (NSDictionary *LCBOInfo in result[@"result"]) {
-    //
-    //    //make a method here to say if json data is nil do not include in array
-    //    [promotionalAlcohol addObject:[[Product alloc]initWithInfo:LCBOInfo]];
-    //
-    //    }
-    //    //save the mutable array catphotos to the block.
-    //    complete(promotionalAlcohol);
-    //    
-    //    }];
-    //    //always set after block to make sure the program continues to run while block is retriving data.
-    //    [task resume];
-    //    
-    //    }
     
     
     
