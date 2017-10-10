@@ -14,16 +14,23 @@ class MealTableViewController: UITableViewController
     
     //MARK: Properties
     
-    var meals = [Meal]()
+    var listOfMeals = [Meal]()
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        let manager = DataManager()
+        
+        DataManager.sendGetRequestForAllMeals {(meals:[Meal]) in
+         self.listOfMeals = meals
+            OperationQueue.main.addOperation({
+                self.tableView.reloadData()
+                
+            })
+            
+            
+        }
         
         
-        manager.sendRequestForAllMeals()
-        manager.postPhotoToImgur()
         
         // Use the edit button item provided by the table view controller.
         navigationItem.leftBarButtonItem = editButtonItem
@@ -41,7 +48,7 @@ class MealTableViewController: UITableViewController
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return meals.count
+        return listOfMeals.count
     }
     
     
@@ -57,11 +64,11 @@ class MealTableViewController: UITableViewController
         }
         
         // Fetches the appropriate meal for the data source layout.
-        let meal = meals[indexPath.row]
+        let meal = listOfMeals[indexPath.row]
         
         cell.nameLabel.text = meal.name
         cell.photoImageView.image = meal.photo
-        cell.ratingControl.rating = meal.rating!
+//        cell.ratingControl.rating = (meal.rating?)!
         
         return cell
     }
@@ -80,7 +87,7 @@ class MealTableViewController: UITableViewController
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
-            meals.remove(at: indexPath.row)
+            listOfMeals.remove(at: indexPath.row)
             
             
             tableView.deleteRows(at: [indexPath], with: .fade)
@@ -131,7 +138,7 @@ class MealTableViewController: UITableViewController
                 fatalError("The selected cell is not being displayed by the table")
             }
             
-            let selectedMeal = meals[indexPath.row]
+            let selectedMeal = listOfMeals[indexPath.row]
             mealDetailViewController.meal = selectedMeal
             
         default:
@@ -145,15 +152,15 @@ class MealTableViewController: UITableViewController
             
             if let selectedIndexPath = tableView.indexPathForSelectedRow {
                 // Update an existing meal.
-                meals[selectedIndexPath.row] = meal
+                listOfMeals[selectedIndexPath.row] = meal
                 tableView.reloadRows(at: [selectedIndexPath], with: .none)
             }
             else {
                 
                 // Add a new meal.
-                let newIndexPath = IndexPath(row: meals.count, section: 0)
+                let newIndexPath = IndexPath(row: listOfMeals.count, section: 0)
                 
-                meals.append(meal)
+                listOfMeals.append(meal)
                 tableView.insertRows(at: [newIndexPath], with: .automatic)
             }
             
