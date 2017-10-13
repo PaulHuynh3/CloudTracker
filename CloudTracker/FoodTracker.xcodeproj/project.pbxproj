@@ -15,7 +15,6 @@
 		8893094D1F89B0FA00761747 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8893094B1F89B0FA00761747 /* Main.storyboard */; };
 		8893094F1F89B0FA00761747 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8893094E1F89B0FA00761747 /* Assets.xcassets */; };
 		889309521F89B0FA00761747 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 889309501F89B0FA00761747 /* LaunchScreen.storyboard */; };
-		8893095D1F89B0FA00761747 /* FoodTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8893095C1F89B0FA00761747 /* FoodTrackerTests.swift */; };
 		889309681F8ABBC500761747 /* RatingControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889309671F8ABBC500761747 /* RatingControl.swift */; };
 		DA9664CE1F8C0567000507AF /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA9664CD1F8C0567000507AF /* DataManager.swift */; };
 /* End PBXBuildFile section */
@@ -42,7 +41,6 @@
 		889309511F89B0FA00761747 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		889309531F89B0FA00761747 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../FoodTracker/Info.plist; sourceTree = "<group>"; };
 		889309581F89B0FA00761747 /* FoodTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoodTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8893095C1F89B0FA00761747 /* FoodTrackerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodTrackerTests.swift; sourceTree = "<group>"; };
 		8893095E1F89B0FA00761747 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		889309671F8ABBC500761747 /* RatingControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingControl.swift; sourceTree = "<group>"; };
 		DA9664CD1F8C0567000507AF /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
@@ -104,7 +102,6 @@
 				8893094E1F89B0FA00761747 /* Assets.xcassets */,
 				889309501F89B0FA00761747 /* LaunchScreen.storyboard */,
 				889309531F89B0FA00761747 /* Info.plist */,
-				8893095C1F89B0FA00761747 /* FoodTrackerTests.swift */,
 				8893095E1F89B0FA00761747 /* Info.plist */,
 			);
 			path = FoodTrackerTests;
@@ -238,7 +235,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8893095D1F89B0FA00761747 /* FoodTrackerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

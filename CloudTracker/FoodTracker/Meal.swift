@@ -18,17 +18,18 @@ class Meal: CustomStringConvertible {
     var rating: Int?
     var mealDescription: String
     var calories: Int
+    var mealID: Int
     
     //MARK: iniatilize with json data.
     init(info: Dictionary<String, Any>){
         self.name = info["title"] as! String
         if let imagePath = info["imagePath"] as? String {
-           self.photoURL = URL(string: imagePath)
+        self.photoURL = URL(string: imagePath)
         }
         self.mealDescription = info["description"] as! String
         self.calories = info["calories"] as! Int
         self.rating = info["rating"] as? Int
-     
+        self.mealID = info["id"] as! Int
     }
     
     var description: String {

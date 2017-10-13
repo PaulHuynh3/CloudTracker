@@ -20,22 +20,49 @@ class MealTableViewController: UITableViewController
     {
         super.viewDidLoad()
         
-        DataManager.sendGetRequestForAllMeals {(meals:[Meal]) in
-         self.listOfMeals = meals
-            OperationQueue.main.addOperation({
-                self.tableView.reloadData()
+//        DataManager.sendGetRequestForAllMeals {(meals:[Meal]) in
+//        //all the ui information goes inside the main queue.
+//            OperationQueue.main.addOperation({
+//                self.listOfMeals = meals
+//                self.tableView.reloadData()
+//                
+//            })
+//        }
+        
+ 
+        //network request to create meals
+        DataManager.createMeal(title:"Pizza", description:"Sweet but addictive!!!!", calories:500) { (meal:Meal) in
+            
+            DataManager.postPhotoToImgur(image: #imageLiteral(resourceName: "pineapple"), completionHandler: { (url:URL) in
+                
+                DataManager.updateMealWithPhoto(meal: meal, photoURL: url, completionHandler: {
+                    
+                    DataManager.sendGetRequestForAllMeals(completionHandler: { (mealArray:[Meal]) in
+                        
+                            OperationQueue.main.addOperation {
+                                self.listOfMeals = mealArray
+                                self.tableView.reloadData()
+                            }
+                            
+                            
+                        
+                    })
+                    
+                })
                 
             })
-            
             
         }
         
         
         
+        
+        
+        
+        
+        
         // Use the edit button item provided by the table view controller.
         navigationItem.leftBarButtonItem = editButtonItem
-        
-
     }
     
     
@@ -68,6 +95,7 @@ class MealTableViewController: UITableViewController
         
         cell.nameLabel.text = meal.name
         cell.photoImageView.image = meal.photo
+
 //        cell.ratingControl.rating = (meal.rating?)!
         
         return cell
