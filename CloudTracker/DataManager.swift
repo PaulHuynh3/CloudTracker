@@ -11,6 +11,46 @@ import UIKit
 //class func means i dont have to call dataManager to use these functions
 class DataManager: NSObject {
     
+    //MARK: Create Signin for User
+    class func createSignIn(username:String, password:String, completionHandler: @escaping (String) -> Void) {
+    
+    //create session
+    let sessionConfig = URLSessionConfiguration.default
+    let session = URLSession(configuration: sessionConfig)
+        guard let url = URL(string: "https://cloud-tracker.herokuapp.com/signup?username=\(username)&password=\(password)") else {
+            return
+        }
+    //Providing details about the request
+     var request = URLRequest(url: url)
+        
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+    
+        _ = session.dataTask(with: request) { (data:Data?, urlResponse:URLResponse?, error:Error?) in
+            
+            if let error = error {
+                print(#line, error.localizedDescription)
+            }
+            
+            guard let data = data else{
+            return
+            }
+            
+            
+            guard let json = try! JSONSerialization.jsonObject(with:data) as? Dictionary<String,Any> else{
+                return
+            }
+
+            guard let dataString = json["token"] as? String else{
+            return
+            }
+            
+            completionHandler(dataString)
+        }
+
+    }
+    
+    
     //MARK: Get Network Request For All Meals
     
     class func sendGetRequestForAllMeals(completionHandler: @escaping ([Meal]) -> Void) {
@@ -22,7 +62,7 @@ class DataManager: NSObject {
         var request = URLRequest(url: components.url!)
         
         request.httpMethod = "GET"
-        request.addValue("M43tSTLQjmNrUjXdC3Ro4vW8", forHTTPHeaderField: "token")
+        request.addValue("WXZyTWPZaewUnSgZD8PqGpqL", forHTTPHeaderField: "token")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
         //the data is store in "data"
@@ -83,7 +123,7 @@ class DataManager: NSObject {
         var request = URLRequest(url: components.url!)
         
         request.httpMethod = "GET"
-        request.addValue("M43tSTLQjmNrUjXdC3Ro4vW8", forHTTPHeaderField: "token")
+        request.addValue("WXZyTWPZaewUnSgZD8PqGpqL", forHTTPHeaderField: "token")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
         //the data is store in "data"
@@ -207,7 +247,7 @@ class DataManager: NSObject {
         
         request.httpMethod = "POST"
         // set headers as needed
-        request.addValue("M43tSTLQjmNrUjXdC3Ro4vW8", forHTTPHeaderField: "token")
+        request.addValue("WXZyTWPZaewUnSgZD8PqGpqL", forHTTPHeaderField: "token")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
         
@@ -262,7 +302,7 @@ class DataManager: NSObject {
         
         request.httpMethod = "POST"
         // set headers as needed
-        request.addValue("M43tSTLQjmNrUjXdC3Ro4vW8", forHTTPHeaderField: "token")
+        request.addValue("WXZyTWPZaewUnSgZD8PqGpqL", forHTTPHeaderField: "token")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
         let task = session.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
@@ -282,8 +322,8 @@ class DataManager: NSObject {
                     return
                 }
                 
-                //return the created meal into completion handler
-                let createMealWithImage = Meal(info: jsonMeal["meal"]!)
+                //don't need to add this to completion block as the top code already did a POST for photo with image.. just have to call the function completionHandler.
+                _ = Meal(info: jsonMeal["meal"]!)
                 
                 //completion handler
                 completionHandler()

@@ -19,47 +19,29 @@ class MealTableViewController: UITableViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
-//        DataManager.sendGetRequestForAllMeals {(meals:[Meal]) in
-//        //all the ui information goes inside the main queue.
-//            OperationQueue.main.addOperation({
-//                self.listOfMeals = meals
-//                self.tableView.reloadData()
-//                
-//            })
-//        }
-        
- 
+
         //network request to create meals
-        DataManager.createMeal(title:"Pizza", description:"Sweet but addictive!!!!", calories:500) { (meal:Meal) in
+        DataManager.createMeal(title:"HotDogs", description:"Nice and raw!", calories:5) { (meal:Meal) in
             
-            DataManager.postPhotoToImgur(image: #imageLiteral(resourceName: "pineapple"), completionHandler: { (url:URL) in
+            DataManager.postPhotoToImgur(image:#imageLiteral(resourceName: "Paul"), completionHandler: { (url:URL) in
                 
                 DataManager.updateMealWithPhoto(meal: meal, photoURL: url, completionHandler: {
                     
                     DataManager.sendGetRequestForAllMeals(completionHandler: { (mealArray:[Meal]) in
                         
-                            OperationQueue.main.addOperation {
-                                self.listOfMeals = mealArray
-                                self.tableView.reloadData()
-                            }
-                            
-                            
-                        
+                        OperationQueue.main.addOperation {
+                            self.listOfMeals = mealArray
+                            self.tableView.reloadData()
+                        }
                     })
+                    
+                    
                     
                 })
                 
             })
             
         }
-        
-        
-        
-        
-        
-        
-        
         
         // Use the edit button item provided by the table view controller.
         navigationItem.leftBarButtonItem = editButtonItem
@@ -90,12 +72,29 @@ class MealTableViewController: UITableViewController
             fatalError("The dequeued cell is not an instance of MealTableViewCell.")
         }
         
-        // Fetches the appropriate meal for the data source layout.
+        // fetches and loads the pictures identified
         let meal = listOfMeals[indexPath.row]
         
         cell.nameLabel.text = meal.name
         cell.photoImageView.image = meal.photo
-
+        
+        
+        //if no pictures for the indexPath this is activated
+        if meal.photo == nil {
+            if let url = meal.photoURL {
+                //load image from the meal.photoURL property.. the indexpath is responsible for organizing how the objects are broken down like assigning the image,title to each etc. and will keep getting run to load images over and over again when user scrolls.
+                DataManager.loadImage(imageURL: url) { (image) in
+                    //assign the loaded photo to a property so it doesnt have to load everytime.
+                    meal.photo = image
+                    OperationQueue.main.addOperation {
+                        if cell.nameLabel.text == meal.name {
+                            cell.photoImageView.image = image
+                        }
+                    }
+                }
+            }
+        }
+        
 //        cell.ratingControl.rating = (meal.rating?)!
         
         return cell
@@ -145,7 +144,8 @@ class MealTableViewController: UITableViewController
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+    
+    
         super.prepare(for: segue, sender: sender)
         
         switch(segue.identifier ?? "") {
@@ -176,11 +176,11 @@ class MealTableViewController: UITableViewController
     
     //MARK: Actions
     @IBAction func unwindToMealList(sender: UIStoryboardSegue) {
-        if let sourceViewController = sender.source as? MealViewController, let meal = sourceViewController.meal {
+        if let sourceViewController = sender.source as? MealViewController {
             
             if let selectedIndexPath = tableView.indexPathForSelectedRow {
                 // Update an existing meal.
-                listOfMeals[selectedIndexPath.row] = meal
+                listOfMeals[selectedIndexPath.row] = sourceViewController.meal!
                 tableView.reloadRows(at: [selectedIndexPath], with: .none)
             }
             else {
@@ -188,60 +188,11 @@ class MealTableViewController: UITableViewController
                 // Add a new meal.
                 let newIndexPath = IndexPath(row: listOfMeals.count, section: 0)
                 
-                listOfMeals.append(meal)
+                listOfMeals.append(sourceViewController.meal!)
                 tableView.insertRows(at: [newIndexPath], with: .automatic)
             }
             
         }
     }
-    
-    
-    //MARK: Private Methods
-    
-//    private func loadSampleMeals()
-//    {
-//        let photo1 = UIImage(named: "meal1")
-//        let photo2 = UIImage(named: "meal2")
-//        let photo3 = UIImage(named: "meal3")
-//        
-//        guard let meal1 = Meal(name: "Caprese Salad", photo: photo1, rating: 4)
-//            else
-//        {
-//            fatalError("Unable to instantiate meal1")
-//        }
-//        
-//        guard let meal2 = Meal(name: "Chicken and Potatoes", photo: photo2, rating: 5)
-//            else
-//        {
-//            fatalError("Unable to instantiate meal2")
-//        }
-//        
-//        guard let meal3 = Meal(name: "Pasta with Meatballs", photo: photo3, rating: 3)
-//            else
-//        {
-//            fatalError("Unable to instantiate meal2")
-//        }
-//        
-//        //add the objects to the array of meals
-//        meals += [meal1, meal2, meal3]
-//    }
-//    
-//    
-//    //DATA persist function
-//    private func saveMeals () {
-//        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(meals, toFile: Meal.ArchiveURL.path)
-//        if isSuccessfulSave {
-//            os_log("Meals successfully saved.", log: OSLog.default, type: .debug)
-//        } else {
-//            os_log("Failed to save meals...", log: OSLog.default, type: .error)
-//        }
-//    
-//    }
-//    
-//    //Load the meal list
-//    
-//    private func loadMeals() -> [Meal]?  {
-//        return NSKeyedUnarchiver.unarchiveObject(withFile: Meal.ArchiveURL.path) as? [Meal]
-//    }
-//    
 }
+

@@ -35,6 +35,7 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         nameTextField.delegate = self
         
         // Set up views if editing an existing Meal.
+        //allows access to the meal object to set it's stuff.
         if let meal = meal {
             navigationItem.title = meal.name
             nameTextField.text   = meal.name
@@ -129,6 +130,7 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         
         // Set the meal to be passed to MealTableViewController after the unwind segue.
 //        meal = Meal(name: name, photo: photo, rating: rating)
+        
         
     }
     

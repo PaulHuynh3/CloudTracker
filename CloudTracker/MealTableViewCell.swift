@@ -17,15 +17,6 @@ class MealTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-
-        
-        if let url = meal.photoURL {
-            DataManager.loadImage(imageURL: url) { (image) in
-                OperationQueue.main.addOperation {
-                    cell.imageView?.image = image
-                }
-            }
-        }
     
     
     }
@@ -35,6 +26,7 @@ class MealTableViewCell: UITableViewCell {
 
     }
     
+    //deletes pic
     override func prepareForReuse() {
         self.imageView?.image = nil
     }

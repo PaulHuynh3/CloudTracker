@@ -24,25 +24,36 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XUC-bw-Pnb" id="elt-r5-yI8">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="89.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="defaultphoto_2x" translatesAutoresizingMaskIntoConstraints="NO" id="Cno-2v-17B">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultphoto_2x" translatesAutoresizingMaskIntoConstraints="NO" id="Cno-2v-17B">
                                             <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
-                                        <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="33R-WO-NFi" customClass="RatingControl" customModule="FoodTracker" customModuleProvider="target">
-                                            <rect key="frame" x="111" y="37" width="239" height="44"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="33R-WO-NFi" customClass="RatingControl" customModule="FoodTracker" customModuleProvider="target">
+                                            <rect key="frame" x="98" y="37" width="252" height="44"/>
                                         </stackView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Osb-Zd-tGg">
-                                            <rect key="frame" x="132" y="8" width="218" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Osb-Zd-tGg">
+                                            <rect key="frame" x="111" y="8" width="239" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="239" id="QYn-Dw-yY4"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailingMargin" secondItem="33R-WO-NFi" secondAttribute="trailing" constant="17" id="3Em-zQ-dNg"/>
+                                        <constraint firstItem="Osb-Zd-tGg" firstAttribute="leading" secondItem="Cno-2v-17B" secondAttribute="trailing" constant="21" id="Bz8-tT-Rmr"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="Osb-Zd-tGg" secondAttribute="trailing" constant="17" id="F6B-cU-m3M"/>
+                                        <constraint firstItem="Cno-2v-17B" firstAttribute="leading" secondItem="elt-r5-yI8" secondAttribute="leading" id="HIa-Jw-mne"/>
+                                        <constraint firstItem="Osb-Zd-tGg" firstAttribute="top" secondItem="elt-r5-yI8" secondAttribute="topMargin" id="OQl-iJ-zeB"/>
+                                        <constraint firstAttribute="bottom" secondItem="Cno-2v-17B" secondAttribute="bottom" id="Zmh-gK-jmR"/>
+                                        <constraint firstItem="33R-WO-NFi" firstAttribute="top" secondItem="Osb-Zd-tGg" secondAttribute="bottom" constant="8" id="azh-zB-zPn"/>
+                                        <constraint firstItem="Cno-2v-17B" firstAttribute="top" secondItem="elt-r5-yI8" secondAttribute="top" id="fd9-yL-xn9"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="33R-WO-NFi" secondAttribute="bottom" id="iVZ-CO-J7d"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="nameLabel" destination="Osb-Zd-tGg" id="E1f-gz-8fh"/>
@@ -60,7 +71,7 @@
                     <navigationItem key="navigationItem" title="Your Meals" id="sk6-b2-4JF">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="U18-Tm-eS4">
                             <connections>
-                                <segue destination="ZwQ-D0-3Yn" kind="show" identifier="AddItem" id="cOX-B0-nAa"/>
+                                <segue destination="BYZ-38-t0r" kind="show" identifier="AddItem" id="V1f-re-OZR"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -192,6 +203,6 @@
         <image name="defaultphoto_2x" width="640" height="640"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="JAE-05-E82"/>
+        <segue reference="V1f-re-OZR"/>
     </inferredMetricsTieBreakers>
 </document>
