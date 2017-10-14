@@ -14,8 +14,9 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
     
     //MARK: Properties
     @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var descriptionTextField: UITextField!
+    @IBOutlet weak var caloriesTextField: UITextField!
     @IBOutlet weak var photoImageView: UIImageView!
-    @IBOutlet weak var ratingControl: RatingControl!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
     /*
@@ -23,25 +24,26 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
      or constructed as part of adding a new meal.
      */
     var meal: Meal?
-    
+
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
         
-        
+        if let meal = meal {
+            navigationItem.title = meal.name
+            self.nameTextField.text   = meal.name
+            self.photoImageView.image = meal.photo
+            self.descriptionTextField.text = meal.mealDescription
+            self.caloriesTextField.text = "\(meal.calories)"
+            
+        }
+ 
         
         // Handle the text field’s user input through delegate callbacks.
         nameTextField.delegate = self
         
-        // Set up views if editing an existing Meal.
-        //allows access to the meal object to set it's stuff.
-        if let meal = meal {
-            navigationItem.title = meal.name
-            nameTextField.text   = meal.name
-            photoImageView.image = meal.photo
-        //    ratingControl.rating = meal.rating!
-        }
+
         
         //enable the save button only if the text field has a valid meal name
         updateSaveButtonState()
@@ -126,10 +128,7 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         
         let name = nameTextField.text ?? ""
         let photo = photoImageView.image
-        let rating = ratingControl.rating
-        
-        // Set the meal to be passed to MealTableViewController after the unwind segue.
-//        meal = Meal(name: name, photo: photo, rating: rating)
+       
         
         
     }

@@ -19,29 +19,14 @@ class MealTableViewController: UITableViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
-
-        //network request to create meals
-        DataManager.createMeal(title:"HotDogs", description:"Nice and raw!", calories:5) { (meal:Meal) in
+        
+        DataManager.sendGetRequestForAllMeals(completionHandler: { (mealArray:[Meal]) in
             
-            DataManager.postPhotoToImgur(image:#imageLiteral(resourceName: "Paul"), completionHandler: { (url:URL) in
-                
-                DataManager.updateMealWithPhoto(meal: meal, photoURL: url, completionHandler: {
-                    
-                    DataManager.sendGetRequestForAllMeals(completionHandler: { (mealArray:[Meal]) in
-                        
-                        OperationQueue.main.addOperation {
-                            self.listOfMeals = mealArray
-                            self.tableView.reloadData()
-                        }
-                    })
-                    
-                    
-                    
-                })
-                
-            })
-            
-        }
+            OperationQueue.main.addOperation {
+                self.listOfMeals = mealArray
+                self.tableView.reloadData()
+            }
+        })
         
         // Use the edit button item provided by the table view controller.
         navigationItem.leftBarButtonItem = editButtonItem
@@ -77,6 +62,8 @@ class MealTableViewController: UITableViewController
         
         cell.nameLabel.text = meal.name
         cell.photoImageView.image = meal.photo
+        cell.descriptionLabel.text = meal.mealDescription
+        cell.caloriesLabel.text = "\(meal.calories)"
         
         
         //if no pictures for the indexPath this is activated
@@ -88,28 +75,20 @@ class MealTableViewController: UITableViewController
                     meal.photo = image
                     OperationQueue.main.addOperation {
                         if cell.nameLabel.text == meal.name {
-                            cell.photoImageView.image = image
+                            cell.photoImageView.image = meal.photo
+                            cell.descriptionLabel.text = meal.mealDescription
+                            cell.caloriesLabel.text = "\(meal.calories)"
                         }
                     }
                 }
             }
         }
         
-//        cell.ratingControl.rating = (meal.rating?)!
-        
         return cell
     }
     
     
-    /*
-     // Override to support conditional editing of the table view.
-     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the specified item to be editable.
-     return true
-     }
-     */
     
-  
     // Allows delete functionality in main view!
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
@@ -122,30 +101,15 @@ class MealTableViewController: UITableViewController
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }
     }
- 
     
-    /*
-     // Override to support rearranging the table view.
-     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-     
-     }
-     */
-    
-    /*
-     // Override to support conditional rearranging of the table view.
-     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the item to be re-orderable.
-     return true
-     }
-     */
     
     
     // MARK: - Navigation
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    
-    
+        
+        
         super.prepare(for: segue, sender: sender)
         
         switch(segue.identifier ?? "") {
@@ -174,10 +138,12 @@ class MealTableViewController: UITableViewController
         }
     }
     
-    //MARK: Actions
+    //MARK: UNWIND segue.
     @IBAction func unwindToMealList(sender: UIStoryboardSegue) {
+        //setting the sender source as mealviewcontroller (where the data is coming from)
         if let sourceViewController = sender.source as? MealViewController {
             
+            //update meal if user changes the already made meal
             if let selectedIndexPath = tableView.indexPathForSelectedRow {
                 // Update an existing meal.
                 listOfMeals[selectedIndexPath.row] = sourceViewController.meal!
@@ -188,8 +154,30 @@ class MealTableViewController: UITableViewController
                 // Add a new meal.
                 let newIndexPath = IndexPath(row: listOfMeals.count, section: 0)
                 
-                listOfMeals.append(sourceViewController.meal!)
-                tableView.insertRows(at: [newIndexPath], with: .automatic)
+                
+                //network request to create meals (when user hits the save button from MealViewController...
+                DataManager.createMeal(title:sourceViewController.nameTextField.text!, description:sourceViewController.descriptionTextField.text!, calories:Int(sourceViewController.caloriesTextField.text!)!) { (meal:Meal) in
+                    
+                    DataManager.postPhotoToImgur(image:sourceViewController.photoImageView.image!, completionHandler: { (url:URL) in
+                        
+                        DataManager.updateMealWithPhoto(meal: meal, photoURL: url, completionHandler: {
+                            
+                            OperationQueue.main.addOperation {
+                                
+                                //You never set the meal image to the URL you receive..
+                                //But other than that, everything works..
+                                //Yup, uploads successfully but meal.image and meal.photoURL = nil because you never set it to the response..
+                                sourceViewController.meal = meal
+                                
+                                self.listOfMeals.append(meal)
+                                self.tableView.insertRows(at: [newIndexPath], with: .automatic)
+                            }
+                            
+                        })
+                        
+                    })
+                    
+                }
             }
             
         }

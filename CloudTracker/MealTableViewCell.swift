@@ -13,7 +13,11 @@ class MealTableViewCell: UITableViewCell {
     //MARK: Properties
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var photoImageView: UIImageView!
-    @IBOutlet weak var ratingControl: RatingControl!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var caloriesLabel: UILabel!
+   
+    
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()

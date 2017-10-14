@@ -62,7 +62,7 @@ class DataManager: NSObject {
         var request = URLRequest(url: components.url!)
         
         request.httpMethod = "GET"
-        request.addValue("WXZyTWPZaewUnSgZD8PqGpqL", forHTTPHeaderField: "token")
+        request.addValue("nNtGmqjVPuHQVgDF5EmKVrYX", forHTTPHeaderField: "token")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
         //the data is store in "data"
@@ -123,7 +123,7 @@ class DataManager: NSObject {
         var request = URLRequest(url: components.url!)
         
         request.httpMethod = "GET"
-        request.addValue("WXZyTWPZaewUnSgZD8PqGpqL", forHTTPHeaderField: "token")
+        request.addValue("nNtGmqjVPuHQVgDF5EmKVrYX", forHTTPHeaderField: "token")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
         //the data is store in "data"
@@ -247,7 +247,7 @@ class DataManager: NSObject {
         
         request.httpMethod = "POST"
         // set headers as needed
-        request.addValue("WXZyTWPZaewUnSgZD8PqGpqL", forHTTPHeaderField: "token")
+        request.addValue("nNtGmqjVPuHQVgDF5EmKVrYX", forHTTPHeaderField: "token")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
         
@@ -291,6 +291,12 @@ class DataManager: NSObject {
     //MARK: Update photos with the meal and picture.
     
     class func updateMealWithPhoto(meal: Meal, photoURL: URL, completionHandler: @escaping () -> Void) {
+        //since im updating photo with meal i need to receive the url link from imgur and capture it inside my property.. else it will never happen
+        
+        //sets the photoURL property as the receiving PhotoURL...
+        meal.photoURL = photoURL;
+        //sets the photoImage property equal to the contents of the url..
+        meal.photo = try! UIImage(data: Data(contentsOf: photoURL))
         
         let sessionConfig = URLSessionConfiguration.default
         let session = URLSession(configuration: sessionConfig)
@@ -301,8 +307,7 @@ class DataManager: NSObject {
         var request = URLRequest(url: components.url!)
         
         request.httpMethod = "POST"
-        // set headers as needed
-        request.addValue("WXZyTWPZaewUnSgZD8PqGpqL", forHTTPHeaderField: "token")
+        request.addValue("nNtGmqjVPuHQVgDF5EmKVrYX", forHTTPHeaderField: "token")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
         let task = session.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
@@ -325,6 +330,12 @@ class DataManager: NSObject {
                 //don't need to add this to completion block as the top code already did a POST for photo with image.. just have to call the function completionHandler.
                 _ = Meal(info: jsonMeal["meal"]!)
                 
+                //access the urlString of the json data..
+                let urlStr = jsonMeal["meal"]?["imagePath"] as! String
+                
+                //set the urlStr as the property's url.
+                meal.photoURL = URL(string: urlStr)
+                
                 //completion handler
                 completionHandler()
                 
@@ -332,8 +343,7 @@ class DataManager: NSObject {
             catch {
                 print(#line,error.localizedDescription)
             }
-            
-            
+
         }
         task.resume()
         session.finishTasksAndInvalidate()

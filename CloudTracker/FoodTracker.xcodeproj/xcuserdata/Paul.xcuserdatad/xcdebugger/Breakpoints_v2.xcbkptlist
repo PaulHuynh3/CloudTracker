@@ -4,19 +4,21 @@
    version = "2.0">
    <Breakpoints>
       <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         BreakpointExtensionID = "Xcode.Breakpoint.SwiftErrorBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DataManager.swift"
-            timestampString = "529606114.28848"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "310"
-            endingLineNumber = "310"
-            landmarkName = "updateMealWithPhoto(meal:photoURL:completionHandler:)"
-            landmarkType = "7">
+            scope = "0"
+            stopOnStyle = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -25,28 +27,28 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DataManager.swift"
-            timestampString = "529606114.28848"
+            filePath = "FoodTracker/Meal.swift"
+            timestampString = "529706722.874621"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "315"
-            endingLineNumber = "315"
-            landmarkName = "updateMealWithPhoto(meal:photoURL:completionHandler:)"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "init(info:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DataManager.swift"
-            timestampString = "529606114.28848"
+            timestampString = "529707129.355298"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "321"
-            endingLineNumber = "321"
+            startingLineNumber = "337"
+            endingLineNumber = "337"
             landmarkName = "updateMealWithPhoto(meal:photoURL:completionHandler:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -58,43 +60,43 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DataManager.swift"
-            timestampString = "529606114.28848"
+            timestampString = "529707132.427605"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "352"
-            endingLineNumber = "352"
-            landmarkName = "loadImage(imageURL:completionHandler:)"
+            startingLineNumber = "334"
+            endingLineNumber = "334"
+            landmarkName = "updateMealWithPhoto(meal:photoURL:completionHandler:)"
             landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "static FoodTracker.DataManager.loadImage (imageURL : Foundation.URL, completionHandler : (__ObjC.UIImage) -&gt; ()) -&gt; ()"
+                  symbolName = "static FoodTracker.DataManager.(updateMealWithPhoto (meal : FoodTracker.Meal, photoURL : Foundation.URL, completionHandler : () -&gt; ()) -&gt; ()).(closure #1)"
                   moduleName = "FoodTracker"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/a/Desktop/Lighthouse/CloudTracker/CloudTracker/DataManager.swift"
-                  timestampString = "529648953.92266"
+                  timestampString = "529707185.581025"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "352"
-                  endingLineNumber = "352"
-                  offsetFromSymbolStart = "234">
+                  startingLineNumber = "334"
+                  endingLineNumber = "334"
+                  offsetFromSymbolStart = "1506">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "static FoodTracker.DataManager.(loadImage (imageURL : Foundation.URL, completionHandler : (__ObjC.UIImage) -&gt; ()) -&gt; ()).(closure #1)"
+                  symbolName = "static FoodTracker.DataManager.(updateMealWithPhoto (meal : FoodTracker.Meal, photoURL : Foundation.URL, completionHandler : () -&gt; ()) -&gt; ()).(closure #1)"
                   moduleName = "FoodTracker"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/a/Desktop/Lighthouse/CloudTracker/CloudTracker/DataManager.swift"
-                  timestampString = "529648953.925683"
+                  timestampString = "529707185.582953"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "353"
-                  endingLineNumber = "353"
-                  offsetFromSymbolStart = "31">
+                  startingLineNumber = "334"
+                  endingLineNumber = "334"
+                  offsetFromSymbolStart = "2942">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -106,108 +108,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DataManager.swift"
-            timestampString = "529606114.28848"
+            timestampString = "529707135.206626"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "360"
-            endingLineNumber = "360"
-            landmarkName = "loadImage(imageURL:completionHandler:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "static FoodTracker.DataManager.(loadImage (imageURL : Foundation.URL, completionHandler : (__ObjC.UIImage) -&gt; ()) -&gt; ()).(closure #1)"
-                  moduleName = "FoodTracker"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/a/Desktop/Lighthouse/CloudTracker/CloudTracker/DataManager.swift"
-                  timestampString = "529648953.931415"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "360"
-                  endingLineNumber = "360"
-                  offsetFromSymbolStart = "566">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "static FoodTracker.DataManager.(loadImage (imageURL : Foundation.URL, completionHandler : (__ObjC.UIImage) -&gt; ()) -&gt; ()).(closure #1)"
-                  moduleName = "FoodTracker"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/a/Desktop/Lighthouse/CloudTracker/CloudTracker/DataManager.swift"
-                  timestampString = "529648953.933816"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "360"
-                  endingLineNumber = "360"
-                  offsetFromSymbolStart = "648">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DataManager.swift"
-            timestampString = "529608172.034977"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31"
-            landmarkName = "createSignIn(username:password:completionHandler:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "static FoodTracker.DataManager.(createSignIn (username : Swift.String, password : Swift.String, completionHandler : (Swift.String) -&gt; ()) -&gt; ()).(closure #1)"
-                  moduleName = "FoodTracker"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/a/Desktop/Lighthouse/CloudTracker/CloudTracker/DataManager.swift"
-                  timestampString = "529642066.458375"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "31"
-                  endingLineNumber = "31"
-                  offsetFromSymbolStart = "31">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "static FoodTracker.DataManager.(createSignIn (username : Swift.String, password : Swift.String, completionHandler : (Swift.String) -&gt; ()) -&gt; ()).(closure #1)"
-                  moduleName = "FoodTracker"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/a/Desktop/Lighthouse/CloudTracker/CloudTracker/DataManager.swift"
-                  timestampString = "529642066.461232"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "31"
-                  endingLineNumber = "31"
-                  offsetFromSymbolStart = "110">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DataManager.swift"
-            timestampString = "529608173.529531"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
-            landmarkName = "createSignIn(username:password:completionHandler:)"
+            startingLineNumber = "331"
+            endingLineNumber = "331"
+            landmarkName = "updateMealWithPhoto(meal:photoURL:completionHandler:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -218,12 +124,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DataManager.swift"
-            timestampString = "529608175.056434"
+            timestampString = "529707141.197197"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
-            landmarkName = "createSignIn(username:password:completionHandler:)"
+            startingLineNumber = "297"
+            endingLineNumber = "297"
+            landmarkName = "updateMealWithPhoto(meal:photoURL:completionHandler:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -234,12 +140,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DataManager.swift"
-            timestampString = "529608177.299469"
+            timestampString = "529707142.404098"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "48"
-            endingLineNumber = "48"
-            landmarkName = "createSignIn(username:password:completionHandler:)"
+            startingLineNumber = "299"
+            endingLineNumber = "299"
+            landmarkName = "updateMealWithPhoto(meal:photoURL:completionHandler:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -250,43 +156,43 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FoodTracker/MealTableViewController.swift"
-            timestampString = "529648952.774195"
+            timestampString = "529707174.157172"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "89"
-            endingLineNumber = "89"
-            landmarkName = "tableView(_:cellForRowAt:)"
+            startingLineNumber = "159"
+            endingLineNumber = "159"
+            landmarkName = "unwindToMealList(sender:)"
             landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "FoodTracker.MealTableViewController.(tableView (__ObjC.UITableView, cellForRowAt : Foundation.IndexPath) -&gt; __ObjC.UITableViewCell).(closure #1)"
+                  symbolName = "FoodTracker.MealTableViewController.unwindToMealList (sender : __ObjC.UIStoryboardSegue) -&gt; ()"
                   moduleName = "FoodTracker"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/a/Desktop/Lighthouse/CloudTracker/CloudTracker/FoodTracker/MealTableViewController.swift"
-                  timestampString = "529648953.95362"
+                  timestampString = "529707185.60056"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "89"
-                  endingLineNumber = "89"
-                  offsetFromSymbolStart = "69">
+                  startingLineNumber = "159"
+                  endingLineNumber = "159"
+                  offsetFromSymbolStart = "1482">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "FoodTracker.MealTableViewController.(tableView (__ObjC.UITableView, cellForRowAt : Foundation.IndexPath) -&gt; __ObjC.UITableViewCell).(closure #1).(closure #1)"
+                  symbolName = "FoodTracker.MealTableViewController.(unwindToMealList (sender : __ObjC.UIStoryboardSegue) -&gt; ()).(closure #1)"
                   moduleName = "FoodTracker"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/a/Desktop/Lighthouse/CloudTracker/CloudTracker/FoodTracker/MealTableViewController.swift"
-                  timestampString = "529648953.955799"
+                  timestampString = "529707185.602392"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "90"
-                  endingLineNumber = "90"
-                  offsetFromSymbolStart = "30">
+                  startingLineNumber = "161"
+                  endingLineNumber = "161"
+                  offsetFromSymbolStart = "27">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -298,138 +204,42 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FoodTracker/MealTableViewController.swift"
-            timestampString = "529648952.774195"
+            timestampString = "529707175.221087"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
-            landmarkName = "tableView(_:cellForRowAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DataManager.swift"
-            timestampString = "529608471.985685"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "88"
-            endingLineNumber = "88"
-            landmarkName = "sendGetRequestForAllMeals(completionHandler:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DataManager.swift"
-            timestampString = "529608474.129836"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
-            landmarkName = "sendGetRequestForAllMeals(completionHandler:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DataManager.swift"
-            timestampString = "529608475.769653"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
-            landmarkName = "sendGetRequestForAllMeals(completionHandler:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DataManager.swift"
-            timestampString = "529608482.778893"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
-            landmarkName = "sendGetRequestForAllMeals(completionHandler:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DataManager.swift"
-            timestampString = "529608500.246389"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "187"
-            endingLineNumber = "187"
-            landmarkName = "postPhotoToImgur(image:completionHandler:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DataManager.swift"
-            timestampString = "529608507.649583"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "198"
-            endingLineNumber = "198"
-            landmarkName = "postPhotoToImgur(image:completionHandler:)"
+            startingLineNumber = "161"
+            endingLineNumber = "161"
+            landmarkName = "unwindToMealList(sender:)"
             landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "static FoodTracker.DataManager.postPhotoToImgur (image : __ObjC.UIImage, completionHandler : (Foundation.URL) -&gt; ()) -&gt; ()"
+                  symbolName = "FoodTracker.MealTableViewController.(unwindToMealList (sender : __ObjC.UIStoryboardSegue) -&gt; ()).(closure #1)"
                   moduleName = "FoodTracker"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/a/Desktop/Lighthouse/CloudTracker/CloudTracker/DataManager.swift"
-                  timestampString = "529648953.98653"
+                  urlString = "file:///Users/a/Desktop/Lighthouse/CloudTracker/CloudTracker/FoodTracker/MealTableViewController.swift"
+                  timestampString = "529707185.607156"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "198"
-                  endingLineNumber = "198"
-                  offsetFromSymbolStart = "868">
+                  startingLineNumber = "161"
+                  endingLineNumber = "161"
+                  offsetFromSymbolStart = "27">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "static FoodTracker.DataManager.(postPhotoToImgur (image : __ObjC.UIImage, completionHandler : (Foundation.URL) -&gt; ()) -&gt; ()).(closure #1)"
+                  symbolName = "FoodTracker.MealTableViewController.(unwindToMealList (sender : __ObjC.UIStoryboardSegue) -&gt; ()).(closure #1).(closure #1)"
                   moduleName = "FoodTracker"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/a/Desktop/Lighthouse/CloudTracker/CloudTracker/DataManager.swift"
-                  timestampString = "529648953.989515"
+                  urlString = "file:///Users/a/Desktop/Lighthouse/CloudTracker/CloudTracker/FoodTracker/MealTableViewController.swift"
+                  timestampString = "529707185.609221"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "201"
-                  endingLineNumber = "201"
+                  startingLineNumber = "163"
+                  endingLineNumber = "163"
                   offsetFromSymbolStart = "31">
                </Location>
             </Locations>
@@ -441,78 +251,46 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DataManager.swift"
-            timestampString = "529608512.392013"
+            filePath = "FoodTracker/MealTableViewController.swift"
+            timestampString = "529707176.277072"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "201"
-            endingLineNumber = "201"
-            landmarkName = "postPhotoToImgur(image:completionHandler:)"
+            startingLineNumber = "163"
+            endingLineNumber = "163"
+            landmarkName = "unwindToMealList(sender:)"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DataManager.swift"
-            timestampString = "529608513.214941"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "206"
-            endingLineNumber = "206"
-            landmarkName = "postPhotoToImgur(image:completionHandler:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DataManager.swift"
-            timestampString = "529608514.385211"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "211"
-            endingLineNumber = "211"
-            landmarkName = "postPhotoToImgur(image:completionHandler:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DataManager.swift"
-            timestampString = "529608521.350793"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "225"
-            endingLineNumber = "225"
-            landmarkName = "postPhotoToImgur(image:completionHandler:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DataManager.swift"
-            timestampString = "529608541.400165"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "357"
-            endingLineNumber = "357"
-            landmarkName = "loadImage(imageURL:completionHandler:)"
-            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FoodTracker.MealTableViewController.(unwindToMealList (sender : __ObjC.UIStoryboardSegue) -&gt; ()).(closure #1).(closure #1)"
+                  moduleName = "FoodTracker"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/a/Desktop/Lighthouse/CloudTracker/CloudTracker/FoodTracker/MealTableViewController.swift"
+                  timestampString = "529707185.615039"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "163"
+                  endingLineNumber = "163"
+                  offsetFromSymbolStart = "31">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FoodTracker.MealTableViewController.(unwindToMealList (sender : __ObjC.UIStoryboardSegue) -&gt; ()).(closure #1).(closure #1).(closure #1)"
+                  moduleName = "FoodTracker"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/a/Desktop/Lighthouse/CloudTracker/CloudTracker/FoodTracker/MealTableViewController.swift"
+                  timestampString = "529707185.618179"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "165"
+                  endingLineNumber = "165"
+                  offsetFromSymbolStart = "27">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
