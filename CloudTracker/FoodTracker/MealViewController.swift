@@ -113,7 +113,6 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
     }
     
     
-    // saves the item user enters into mealviewcontroller..
     // This method lets you configure a view controller before it's presented.
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {

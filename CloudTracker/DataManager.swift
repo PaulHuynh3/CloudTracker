@@ -293,9 +293,10 @@ class DataManager: NSObject {
     class func updateMealWithPhoto(meal: Meal, photoURL: URL, completionHandler: @escaping () -> Void) {
         //since im updating photo with meal i need to receive the url link from imgur and capture it inside my property.. else it will never happen
         
-        //sets the photoURL property as the receiving PhotoURL...
+        //Plan A
+        //always have to save it in a property else after this func loads the contents inside disappears when the function ends.
         meal.photoURL = photoURL;
-        //sets the photoImage property equal to the contents of the url..
+        //sets the photoImage property equal to the contents of the url
         meal.photo = try! UIImage(data: Data(contentsOf: photoURL))
         
         let sessionConfig = URLSessionConfiguration.default
@@ -327,13 +328,15 @@ class DataManager: NSObject {
                     return
                 }
                 
-                //don't need to add this to completion block as the top code already did a POST for photo with image.. just have to call the function completionHandler.
                 _ = Meal(info: jsonMeal["meal"]!)
+                
+                
+                //Plan A above already fixed this.. this is more neat and just in case.
                 
                 //access the urlString of the json data..
                 let urlStr = jsonMeal["meal"]?["imagePath"] as! String
                 
-                //set the urlStr as the property's url.
+                //set the urlStr as the property's url. so when its called by updatemealwithPhoto it uses this.
                 meal.photoURL = URL(string: urlStr)
                 
                 //completion handler

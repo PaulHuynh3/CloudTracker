@@ -57,7 +57,7 @@ class MealTableViewController: UITableViewController
             fatalError("The dequeued cell is not an instance of MealTableViewCell.")
         }
         
-        // fetches and loads the pictures identified
+        // fetches and loads all the text.. except the image! The mealsArray contains 8 elements this will be loaded one at a time and start again until all 8 elements are loaded.
         let meal = listOfMeals[indexPath.row]
         
         cell.nameLabel.text = meal.name
@@ -66,14 +66,19 @@ class MealTableViewController: UITableViewController
         cell.caloriesLabel.text = "\(meal.calories)"
         
         
-        //if no pictures for the indexPath this is activated
+        //it runs through the above code once and the image wasn't loaded this will hit. it will keep doing this until all images are loaded.
+        //This should happen when simulator is click play initially because photos havent been loaded.
         if meal.photo == nil {
-            if let url = meal.photoURL {
+     
                 //load image from the meal.photoURL property.. the indexpath is responsible for organizing how the objects are broken down like assigning the image,title to each etc. and will keep getting run to load images over and over again when user scrolls.
-                DataManager.loadImage(imageURL: url) { (image) in
-                    //assign the loaded photo to a property so it doesnt have to load everytime.
+                DataManager.loadImage(imageURL: meal.photoURL!) { (image) in
+                    
+                    //assign the loaded photo to a property so it doesnt have to load everytime. This is very important!
                     meal.photo = image
+                    
+                   
                     OperationQueue.main.addOperation {
+                //after all the pictures have been loaded it goes into here. pictures have to be loaded but words and texts do not.. so it waits for all the images to load before it populates.
                         if cell.nameLabel.text == meal.name {
                             cell.photoImageView.image = meal.photo
                             cell.descriptionLabel.text = meal.mealDescription
@@ -81,7 +86,7 @@ class MealTableViewController: UITableViewController
                         }
                     }
                 }
-            }
+            
         }
         
         return cell
@@ -114,7 +119,7 @@ class MealTableViewController: UITableViewController
         
         switch(segue.identifier ?? "") {
         //different case for different scenarios
-        case "AddItem":
+        case "AddItem": //segue has to go through the navigationcontroller of the mealTableViewController so it can see a blank table. instead of directly to the mealTableViewController!!!!!
             os_log("Adding a new meal.", log: OSLog.default, type: .debug)
             
         case "ShowDetail":
@@ -123,7 +128,7 @@ class MealTableViewController: UITableViewController
             }
             
             guard let selectedMealCell = sender as? MealTableViewCell else {
-                fatalError("Unexpected sender: \(sender)")
+                fatalError("Unexpected sender: \(String(describing: sender))")
             }
             
             guard let indexPath = tableView.indexPath(for: selectedMealCell) else {
@@ -134,7 +139,7 @@ class MealTableViewController: UITableViewController
             mealDetailViewController.meal = selectedMeal
             
         default:
-            fatalError("Unexpected Segue Identifier; \(segue.identifier)")
+            fatalError("Unexpected Segue Identifier; \(String(describing: segue.identifier))")
         }
     }
     
@@ -158,7 +163,7 @@ class MealTableViewController: UITableViewController
                 //network request to create meals (when user hits the save button from MealViewController...
                 DataManager.createMeal(title:sourceViewController.nameTextField.text!, description:sourceViewController.descriptionTextField.text!, calories:Int(sourceViewController.caloriesTextField.text!)!) { (meal:Meal) in
                     
-                    DataManager.postPhotoToImgur(image:sourceViewController.photoImageView.image!, completionHandler: { (url:URL) in
+                    DataManager.postPhotoToImgur(image:sourceViewController.photoImageView.image!, completionHandler: { (url:URL) in  
                         
                         DataManager.updateMealWithPhoto(meal: meal, photoURL: url, completionHandler: {
                             
