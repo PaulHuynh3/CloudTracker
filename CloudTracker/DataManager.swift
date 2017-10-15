@@ -62,7 +62,7 @@ class DataManager: NSObject {
         var request = URLRequest(url: components.url!)
         
         request.httpMethod = "GET"
-        request.addValue("nNtGmqjVPuHQVgDF5EmKVrYX", forHTTPHeaderField: "token")
+        request.addValue("NDBJdAbPo9QrhhcxqoQk5G3P", forHTTPHeaderField: "token")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
         //the data is store in "data"
@@ -123,7 +123,7 @@ class DataManager: NSObject {
         var request = URLRequest(url: components.url!)
         
         request.httpMethod = "GET"
-        request.addValue("nNtGmqjVPuHQVgDF5EmKVrYX", forHTTPHeaderField: "token")
+        request.addValue("NDBJdAbPo9QrhhcxqoQk5G3P", forHTTPHeaderField: "token")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
         //the data is store in "data"
@@ -237,8 +237,9 @@ class DataManager: NSObject {
         
         let sessionConfig = URLSessionConfiguration.default
         let session = URLSession(configuration: sessionConfig)
+        let spacelessTitle = title.replacingOccurrences(of: " ", with:"%20")
         let spacelessdescription = description.replacingOccurrences(of: " ", with: "%20")
-        guard let components = URLComponents(string: "https://cloud-tracker.herokuapp.com/users/me/meals?title=\(title)&description=\(spacelessdescription)&calories=\(calories)") else {
+        guard let components = URLComponents(string: "https://cloud-tracker.herokuapp.com/users/me/meals?title=\(spacelessTitle)&description=\(spacelessdescription)&calories=\(calories)") else {
             return
         }
         
@@ -247,7 +248,7 @@ class DataManager: NSObject {
         
         request.httpMethod = "POST"
         // set headers as needed
-        request.addValue("nNtGmqjVPuHQVgDF5EmKVrYX", forHTTPHeaderField: "token")
+        request.addValue("NDBJdAbPo9QrhhcxqoQk5G3P", forHTTPHeaderField: "token")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
         
@@ -308,7 +309,7 @@ class DataManager: NSObject {
         var request = URLRequest(url: components.url!)
         
         request.httpMethod = "POST"
-        request.addValue("nNtGmqjVPuHQVgDF5EmKVrYX", forHTTPHeaderField: "token")
+        request.addValue("NDBJdAbPo9QrhhcxqoQk5G3P", forHTTPHeaderField: "token")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
         let task = session.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
